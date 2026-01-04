@@ -1,0 +1,20 @@
+- name: Installation Nginx
+  hosts: webserver
+  become: yes # admin root 
+  tasks:
+  - name: Run the equivalent of "apt-get update" as a separate step
+    ansible.builtin.apt:
+      update_cache: yes
+
+  - name: Install nginx 
+    apt:
+      name: nginx
+      state: present
+
+  - name: Copy file with owner and permissions
+    ansible.builtin.copy:
+      src: ./demofile.txt
+      dest: /home/ubuntu
+      owner: ubuntu
+      group: ubuntu
+      mode: '0777'

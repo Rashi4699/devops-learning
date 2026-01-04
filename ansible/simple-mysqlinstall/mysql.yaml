@@ -1,0 +1,24 @@
+---
+- name: Installation MySQL
+  hosts: webserver
+  become: yes
+  tasks:
+  - name: install mysql-server
+    apt:
+        name: mysql-server
+        state: present
+        update_cache: yes
+  
+  
+  
+  
+
+
+  
+  #- name: Copy file with owner and permissions
+    ansible.builtin.copy:
+      src: ./demofile.txt
+      dest: /home/ubuntu
+      owner: ubuntu
+      group: ubuntu
+      mode: '0777'      
